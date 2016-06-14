@@ -1,0 +1,45 @@
+<section class="card login">
+    <md-content style="background-color:#E6E6E6">
+   
+    <md-input-container class="md-icon-float md-block">
+      <label> start Latitude</label>
+      <input type="number" step="0.01" ng-model="data.start_lat">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> start Longitude</label>
+      <input type="number" step="0.01" ng-model="data.start_lng">
+    </md-input-container>
+        
+  
+    <md-input-container class="md-icon-float md-block">
+      <label> End Latitude</label>
+      <input type="number" step="0.01" ng-model="data.start_lat">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float md-block">
+      <label> End Longitude</label>
+      <input type="number" step="0.01" ng-model="data.start_lng">
+    </md-input-container>
+
+
+    <p>Mode: <span class="radioValue">{{ data.group1 }}</span> </p>
+
+    <md-radio-group ng-model="data.data.group1">
+      <md-radio-button value="Car" class="md-primary">Car</md-radio-button>
+      <md-radio-button value="Bike"> Bike </md-radio-button>
+      <md-radio-button value="Metro">Metro</md-radio-button>
+      <md-radio-button value="Bus">Bus</md-radio-button>
+    </md-radio-group>
+
+   
+   <md-input-container class="md-block">
+          <label>Comments</label>
+          <textarea ng-model="data.comments" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+    </br>
+    <md-button class="md-raised md-primary" ng-click="eventplan(data)">Save</md-button>
+    
+    </br>
+    </md-content>
+</section>
