@@ -2,9 +2,15 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
 
     myApp.config(['$routeProvider', function($routeProvider) {
       $routeProvider.
+<<<<<<< HEAD
       when('/travel_local/:x', {
           templateUrl: 'views/travel_local.html',
           controller: 'travel_localCtrl'
+=======
+      when('/travel_local', {
+          templateUrl: 'views/travel_local.html',
+          controller: 'RegistrationController'
+>>>>>>> 8d75325bd87414560d0453afc9a6270ae3c53b50
       });
       
       // when('/travel_local', {
@@ -82,12 +88,17 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
          $scope.activitySelect=function(x){
             console.log(x);
             if(x==2)
+<<<<<<< HEAD
                 $location.url("travel_local"+x);
+=======
+                $location.url("travel_local");
+>>>>>>> 8d75325bd87414560d0453afc9a6270ae3c53b50
 
 
          };
 }
 );
+<<<<<<< HEAD
 
      myApp.controller('travel_localCtrl', ['$scope', function($scope) {
          $scope.data = {
@@ -99,3 +110,5 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
      
     }
     ]);
+=======
+>>>>>>> 8d75325bd87414560d0453afc9a6270ae3c53b50
