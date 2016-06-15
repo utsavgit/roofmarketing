@@ -6,10 +6,17 @@ myApp.controller('RegistrationController', function($scope) {
 
 
   $scope.eventplan = function(datas) {
-    firebase.database().ref('users/' + userId).push({
-    username: datas.name,
-    email: email
-  });
+    var userId = "user-01";
+    var date = new Date();
+    var newPostKey = firebase.database().ref().child(date).push().key;
+    
+    var updates = {};
+    updates['/' + userId + '/' + date + '/' + newPostKey] = datas.details;
+    updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/start' + ] = datas.plan.start;
+    updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/end' + ] = datas.plan.end;
+
+    return firebase.database().ref().update(updates);
+
   };
 
 }); // Controller
