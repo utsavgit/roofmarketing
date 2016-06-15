@@ -1,32 +1,30 @@
-var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
+var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages','firebase']);
 
     myApp.config(['$routeProvider', function($routeProvider) {
       $routeProvider.
       when('/travel_local', {
           templateUrl: 'views/travel_local.html',
-          controller: 'RegistrationController'
+          controller: 'travel_localCtrl'
+      }).when('/travel_outstation', {
+          templateUrl: 'views/travel_outstation.html',
+          controller: 'travel_outstationCtrl'
+      }).
+      when('/appointment', {
+          templateUrl: 'views/appointment.html',
+          controller: 'appointmentCtrl'
+      }).
+       when('/online_research', {
+          templateUrl: 'views/online_research.html',
+          controller: 'online_researchCtrl'
+      }).
+      when('/email', {
+          templateUrl: 'views/email.html',
+          controller: 'emailCtrl'
+      }).
+       when('/phone_calls', {
+          templateUrl: 'views/phone_calls.html',
+          controller: 'phone_callsCtrl'
       });
-      // }). when('/travel_outstation', {
-      //     templateUrl: 'views/travel_outstation.html',
-      //     controller: 'travel_outstationCtrl'
-      // });
-      
-      // when('/travel_local', {
-      //     templateUrl: 'views/travel_local.html',
-      //     controller: 'travel_localCtrl'
-      // }).
-      // when('/travel_outstation', {
-      //     templateUrl: 'views/travel_outstation.html',
-      //     controller: 'travel_outstationCtrl'
-      // }).
-      // when('/appointment', {
-      //     templateUrl: 'views/appointment.html',
-      //     controller: 'appointmentCtrl'
-      // }).
-      // when('/email', {
-      //     templateUrl: 'views/email.html',
-      //     controller: 'emailCtrl'
-      // }).
       // when('/meeting', {
       //     templateUrl: 'views/meeting.html',
       //     controller: 'meetingCtrl'
@@ -85,10 +83,19 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
 
          $scope.activitySelect=function(x){
             console.log(x);
+            if(x==1)
+                $location.url("appointment"); 
             if(x==2)
                 $location.url("travel_local");
             else if(x==3)
                 $location.url("travel_outstation");
+            else if(x==4)
+                $location.url("phone_calls");
+            else if(x==5)
+                $location.url("email");
+            else if(x==6)
+                $location.url("online_research");
+              
          };
 }
 );

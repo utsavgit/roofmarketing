@@ -1,4 +1,4 @@
-myApp.controller('RegistrationController', function($scope) {
+myApp.controller('appointmentCtrl', function($scope) {
   
    $scope.data = {
       group1 : 'Car',

@@ -3,6 +3,82 @@
    
     <md-input-container class="md-icon-float md-block">
       <label> start Latitude</label>
+      <input type="number" step="0.01" ng-model="data.plan.start.lat">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> start Longitude</label>
+      <input type="number" step="0.01" ng-model="data.plan.start.lng">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> start Time</label>
+      <input type="number" step="0.01" ng-model="data.plan.start.time">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> start Location</label>
+      <input type="text"  ng-model="data.plan.start.location">
+    </md-input-container>
+        
+  
+    <md-input-container class="md-icon-float md-block">
+      <label> End Latitude</label>
+      <input type="number" step="0.01" ng-model="data.plan.end.lat">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float md-block">
+      <label> End Longitude</label>
+      <input type="number" step="0.01" ng-model="data.plan.end.lng">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> End Time</label>
+      <input type="number" step="0.01" ng-model="data.plan.end.time">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> End Location</label>
+      <input type="text"  ng-model="data.plan.end.location">
+    </md-input-container>
+             
+    <label for="repeatSelect"> Mode: </label>
+    <select name="repeatSelect" id="repeatSelect" ng-model="data.plan.mode" >
+    <option ng-repeat="option in dats.availableModes" value="{{option.mode}}">{{option.mode}}</option>
+    </select>
+
+  
+    <md-input-container class="md-icon-float md-block">
+      <label> Project id</label>
+      <input type="text"  ng-model="data.plan.project_id">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> Purpose</label>
+      <input type="text"  ng-model="data.plan.purpose">
+    </md-input-container>
+
+   
+   <md-input-container class="md-block">
+          <label>Comments</label>
+          <textarea ng-model="data.plan.comments" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+    </br>
+    <div layout="row">
+        <div flex="40"></div>
+        <div flex="33">
+        <md-button class="md-raised md-primary "  style="align:center" ng-click="eventplan(data)">Save</md-button>
+        </div>
+         <div flex></div>
+    </br>
+    </md-content>
+</section>
+
+<!-- <section class="card login">
+    <md-content style="background-color:#E4FCF9">
+   
+    <md-input-container class="md-icon-float md-block">
+      <label> start Latitude</label>
       <input type="number" step="0.01" ng-model="data.start_lat">
     </md-input-container>
 
@@ -73,3 +149,4 @@
     </br>
     </md-content>
 </section>
+ -->
