@@ -20,7 +20,9 @@
           <script src="js/controllers/travel_local.js"></script>   
           <script src="js/controllers/travel_outstation.js"></script>  
           <script src="js/controllers/appointment.js"></script> 
-          <script src="js/controllers/online_research.js"></script>    
+          <script src="js/controllers/online_research.js"></script> 
+          <script src="js/controllers/to_do.js"></script> 
+
 
     </head>
     <body>
@@ -38,6 +40,31 @@
                     <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect" ng-change="activitySelect(data.repeatSelect)">
                       <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
                     </select>
+
+
+                      </br>
+                      </br>
+                    
+                            <md-list flex>
+                            <md-subheader class="md-no-sticky" style="text-align:center;">TO DO LIST</md-subheader>
+                            </br>
+                            <md-list-item class="md-3-line" ng-repeat="item in todos" >
+                              
+                              <div class="md-list-item-text" layout="column">
+                                <h3>{{ item.who }}</h3>
+                                <h4>{{ item.what }}</h4>
+                                <p>{{ item.notes }}</p>
+                              </div>
+                               <md-button class="md-raised" ng-click="edit(item.type)">EDIT</md-button> 
+                              <md-button class="md-warn md-raised" ng-click="delete()">DELETE</md-button> 
+                              </br>
+                            </md-list-item>
+                            <md-subheader></md-subheader>
+                            <md-divider ></md-divider>
+                           </md-list>
+                     
+
+                    
                 </td>
                 <td class="form" ng-view>
                 detailed planning
@@ -49,18 +76,7 @@
                 </td>
             </tr>
 
-        </table>  
-
-         <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-  <script>
-  var config = {
-    apiKey: "AIzaSyDPSo7fYz206TOboKW10_mtogE_nszWDbQ",
-    authDomain: "marketing-3f7dd.firebaseapp.com",
-    databaseURL: "https://marketing-3f7dd.firebaseio.com",
-    storageBucket: "",
-  };
-  firebase.initializeApp(config); 
-  </script>         
+        </table>            
 
     </body>
 
