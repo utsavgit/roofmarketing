@@ -11,3 +11,16 @@
 [warn] ⚠  No Firebase project directory detected. Serving static content from /home/utsav/Desktop/planning_phase
 [info] 
 [info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /home/utsav/.nvm/versions/node/v5.0.0/bin/node /home/utsav/.nvm/versions/node/v5.0.0/bin/firebase serve
+[debug] CLI Version:  3.0.2
+[debug] Platform:     linux
+[debug] Node Version: v5.0.0
+[debug] Time:         Wed Jun 15 2016 12:32:59 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[warn] ⚠  No Firebase project directory detected. Serving static content from /home/utsav/Desktop/planning_phase
+[info] 
+[info] Server listening at: http://localhost:5000
