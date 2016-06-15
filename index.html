@@ -48,14 +48,14 @@
 		<md-list flex>
 		<md-subheader class="md-no-sticky" style="text-align:center;">TO DO LIST</md-subheader>
 	</br>
-	<md-list-item class="md-3-line" ng-repeat="item in todos" >
+	<md-list-item class="md-3-line" ng-repeat="(key, data) in todos" >
 	
 	<div class="md-list-item-text" layout="column">
-		<h3>{{ item.type }}</h3>
-		<h4>{{ item.planning.start.time }} - {{item.planning.end.time}} </h4>
+		<h3>{{ data.type }}</h3>
+		<h4>{{ data.planning.start.time }} - {{data.planning.end.time}} </h4>
 	</div>
-	<md-button class="md-raised" ng-click="edit(item.type)">EDIT</md-button> 
-	<md-button class="md-warn md-raised" ng-click="delete()">DELETE</md-button> 
+	<md-button class="md-raised" ng-click="edit(key)">EDIT</md-button> 
+	<md-button class="md-warn md-raised" ng-click="delete(key)">DELETE</md-button> 
 </br>
 </md-list-item>
 <md-subheader></md-subheader>

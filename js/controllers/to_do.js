@@ -101,11 +101,10 @@
     /*$scope.delete=funtion(){
 
 
-     };
-    $scope.edit=funtion(x){
-    //x is the activity to be deleted
-
-    };*/
+     };*/
+    $scope.edit=function(x){
+      $location.path('/travel_local').search({param:x});
+    };
 
 
          $scope.activitySelect=function(x){

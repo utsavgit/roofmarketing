@@ -1,4 +1,4 @@
-myApp.controller('travel_localCtrl', function($scope) {
+myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
   
    $scope.dats = {
       // group1 : 'Car',
@@ -23,6 +23,34 @@ myApp.controller('travel_localCtrl', function($scope) {
     };
     $scope.repeatSelect;
 
+    if($routeParams.param) {
+
+      console.log($routeParams.param);
+
+        function getUsers() {
+          var defer = $q.defer();
+          firebase.database().ref('/user-01/150616/' + $routeParams.param).on('value', function (snapshot) {
+             if(!snapshot.val()){
+                defer.reject('err no data');
+             }else{
+                defer.resolve(snapshot.val());
+                //return snapshot.val();
+             }
+          });
+        return defer.promise;
+        };
+
+
+        getUsers().then(function(snap){
+              $scope.data = snap;
+                 console.log($scope.data);
+          }, function(err){
+               //do something with the error
+               console.log(err);
+        });
+
+    }
+
 
   $scope.eventplan = function(data) {
     console.log(data);
@@ -35,7 +63,7 @@ myApp.controller('travel_localCtrl', function($scope) {
 
     var updates = {};
     updates['/' + userId + '/' + date + '/' + newPostKey + '/type'] = "localTravel";
-    updates['/' + userId + '/' + date + '/' + newPostKey + '/planning'] = data.plan;
+    updates['/' + userId + '/' + date + '/' + newPostKey + '/planning'] = data.planning;
     //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/start'] = data.plan.start;
     //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/end'] = data.plan.end;
 
