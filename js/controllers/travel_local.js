@@ -26,12 +26,12 @@ myApp.controller('travel_localCtrl', function($scope) {
 
   $scope.eventplan = function(data) {
     console.log(data);
-    var userId = "user-01";
+    var userId = $scope.userid;
     var date = '150616';
     /*firebase.database().ref(userId+'/').set({
 
     })*/
-    var newPostKey = firebase.database().ref('user-01/').child(date).push().key;
+    var newPostKey = firebase.database().ref(userId + '/').child(date).push().key;
 
     var updates = {};
     updates['/' + userId + '/' + date + '/' + newPostKey + '/type'] = "localTravel";
