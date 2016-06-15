@@ -1,49 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages','firebase']);
-
-    myApp.config(['$routeProvider', function($routeProvider) {
-      $routeProvider.
-      when('/travel_local', {
-          templateUrl: 'views/travel_local.html',
-          controller: 'travel_localCtrl'
-      }).when('/travel_outstation', {
-          templateUrl: 'views/travel_outstation.html',
-          controller: 'travel_outstationCtrl'
-      }).
-      when('/appointment', {
-          templateUrl: 'views/appointment.html',
-          controller: 'appointmentCtrl'
-      }).
-       when('/online_research', {
-          templateUrl: 'views/online_research.html',
-          controller: 'online_researchCtrl'
-      }).
-      when('/email', {
-          templateUrl: 'views/email.html',
-          controller: 'emailCtrl'
-      }).
-       when('/phone_calls', {
-          templateUrl: 'views/phone_calls.html',
-          controller: 'phone_callsCtrl'
-      });
-      // when('/meeting', {
-      //     templateUrl: 'views/meeting.html',
-      //     controller: 'meetingCtrl'
-      // }).
-      // when('/break', {
-      //     templateUrl: 'views/break.html',
-      //     controller: 'breakCtrl'
-      // }).
-      // when('/planning', {
-      //     templateUrl: 'views/planning.html',
-      //     controller: 'planningCtrl'
-      // }). 
-      // otherwise({
-      //     redirectTo: '/first'
-      // });
-     }
-     ]);
-
-    myApp.controller('to_doCtrl', function($scope,$location,$timeout) {
+ myApp.controller('to_doCtrl', function($scope,$location,$timeout) {
 
       $scope.myDate = new Date();
       $scope.minDate = new Date(
@@ -118,6 +73,16 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages','fireba
         notes: " I'll be in your neighborhood doing errands"
       },
     ];
+
+    $scope.delete=funtion(){
+
+
+    };
+    $scope.edit=funtion(x){
+    //x is the activity to be deleted
+
+    };
+
 
          $scope.activitySelect=function(x){
             console.log(x);
