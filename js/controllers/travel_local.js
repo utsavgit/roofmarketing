@@ -59,16 +59,19 @@ myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
     /*firebase.database().ref(userId+'/').set({
 
     })*/
-    var newPostKey = firebase.database().ref(userId + '/').child(date).push().key;
+    if(!$routeParams.param) {
+        var newPostKey = firebase.database().ref(userId + '/').child(date).push().key;
+      }
+      else var newPostKey = $routeParams.param;
+      
+        var updates = {};
+        updates['/' + userId + '/' + date + '/' + newPostKey + '/type'] = "localTravel";
+        updates['/' + userId + '/' + date + '/' + newPostKey + '/planning'] = data.planning;
+        //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/start'] = data.plan.start;
+        //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/end'] = data.plan.end;
 
-    var updates = {};
-    updates['/' + userId + '/' + date + '/' + newPostKey + '/type'] = "localTravel";
-    updates['/' + userId + '/' + date + '/' + newPostKey + '/planning'] = data.planning;
-    //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/start'] = data.plan.start;
-    //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/end'] = data.plan.end;
-
-    return firebase.database().ref().update(updates);
-
+        return firebase.database().ref().update(updates);
+    
   };
 
 }); // Controller

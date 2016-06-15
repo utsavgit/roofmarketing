@@ -1,5 +1,7 @@
  myApp.controller('to_doCtrl', function($scope,$location,$timeout, $q) {
 
+      $scope.userId = 'user-01';
+      $scope.date= '150616';
       $scope.myDate = new Date();
       $scope.minDate = new Date(
           $scope.myDate.getFullYear(),
@@ -98,10 +100,13 @@
            console.log(err);
     });
 
-    /*$scope.delete=funtion(){
+    $scope.delete=function(x){
+      console.log("deleting");
+      var updates = {};
+        updates['/' + $scope.userId + '/' + $scope.date + '/' + x] = null;
+        return firebase.database().ref().update(updates);
+     };
 
-
-     };*/
     $scope.edit=function(x){
       $location.path('/travel_local').search({param:x});
     };
