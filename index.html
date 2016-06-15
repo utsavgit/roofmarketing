@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>My Planning</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/angular-route.min.js"></script>
+	<script src="js/lib/angular-animate.min.js"></script>
+	<script src="js/lib/angular-aria.min.js"></script>
+	<script src="js/lib/angular-messages.min.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+
+	<script src="js/app.js"></script>
+	<script src="bower_components/angular-material/angular-material.min.js"></script>
+	<script src="js/controllers/travel_local.js"></script>   
+	<script src="js/controllers/travel_outstation.js"></script>  
+	<script src="js/controllers/appointment.js"></script> 
+	<script src="js/controllers/online_research.js"></script> 
+	<script src="js/controllers/to_do.js"></script> 
+
+
+</head>
+<body>
+	<table style="font-family: Arial">
+		<tr>
+			<td colspan="2" class="header">
+				<h1>My planning</h1>
+			</td>
+		</tr>
+		<tr>
+			<td class="to_do" ng-controller="to_doCtrl">
+				<label > Select Date: </label>
+				<md-datepicker ng-model="myDate" md-placeholder="Enter date" class="date"></md-datepicker>             
+				<label for="repeatSelect"> Select Activity Type: </label>
+				<select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect" ng-change="activitySelect(data.repeatSelect)">
+					<option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+				</select>
+
+
+			</br>
+		</br>
+		
+		<md-list flex>
+		<md-subheader class="md-no-sticky" style="text-align:center;">TO DO LIST</md-subheader>
+	</br>
+	<md-list-item class="md-3-line" ng-repeat="item in todos" >
+	
+	<div class="md-list-item-text" layout="column">
+		<h3>{{ item.type }}</h3>
+		<h4>{{ item.planning.start.time }} - {{item.planning.end.time}} </h4>
+	</div>
+	<md-button class="md-raised" ng-click="edit(item.type)">EDIT</md-button> 
+	<md-button class="md-warn md-raised" ng-click="delete()">DELETE</md-button> 
+</br>
+</md-list-item>
+<md-subheader></md-subheader>
+<md-divider ></md-divider>
+</md-list>
+
+</td>
+<td class="form" ng-view>
+	detailed planning
+</td>
+</tr>
+<tr>
+	<td colspan="2" class="footer">
+		<b>Footer</b>
+	</td>
+</tr>
+
+</table>            
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script>
+	var config = {
+		apiKey: "AIzaSyDPSo7fYz206TOboKW10_mtogE_nszWDbQ",
+		authDomain: "marketing-3f7dd.firebaseapp.com",
+		databaseURL: "https://marketing-3f7dd.firebaseio.com",
+		storageBucket: "",
+	};
+	firebase.initializeApp(config); 
+</script>         
+
+</body>
+
+</html>
+

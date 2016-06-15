@@ -1,4 +1,4 @@
- myApp.controller('to_doCtrl', function($scope,$location,$timeout) {
+ myApp.controller('to_doCtrl', function($scope,$location,$timeout, $q) {
 
       $scope.myDate = new Date();
       $scope.minDate = new Date(
@@ -36,52 +36,76 @@
         ],
          };
 
-         $scope.todos = [
-      {
-       
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-       
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-       
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-       
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-       
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-    ];
-
-    $scope.delete=funtion(){
 
 
-    };
+    //      $scope.todos = [
+    //   {
+       
+    //     what: 'Brunch this weekend?',
+    //     who: 'Min Li Chan',
+    //     when: '3:08PM',
+    //     notes: " I'll be in your neighborhood doing errands"
+    //   },
+    //   {
+       
+    //     what: 'Brunch this weekend?',
+    //     who: 'Min Li Chan',
+    //     when: '3:08PM',
+    //     notes: " I'll be in your neighborhood doing errands"
+    //   },
+    //   {
+       
+    //     what: 'Brunch this weekend?',
+    //     who: 'Min Li Chan',
+    //     when: '3:08PM',
+    //     notes: " I'll be in your neighborhood doing errands"
+    //   },
+    //   {
+       
+    //     what: 'Brunch this weekend?',
+    //     who: 'Min Li Chan',
+    //     when: '3:08PM',
+    //     notes: " I'll be in your neighborhood doing errands"
+    //   },
+    //   {
+       
+    //     what: 'Brunch this weekend?',
+    //     who: 'Min Li Chan',
+    //     when: '3:08PM',
+    //     notes: " I'll be in your neighborhood doing errands"
+    //   },
+    // ];
+
+    function getUsers() {
+        var defer = $q.defer();
+        firebase.database().ref('/user-01/150616').on('value', function (snapshot) {
+           if(!snapshot.val()){
+              defer.reject('err no data');
+           }else{
+              defer.resolve(snapshot.val());
+              //return snapshot.val();
+           }
+        });
+      return defer.promise;
+      };
+
+
+    getUsers().then(function(snap){
+          $scope.todos = snap;
+             console.log($scope.todos);
+      }, function(err){
+           //do something with the error
+           console.log(err);
+    });
+
+    /*$scope.delete=funtion(){
+
+
+     };
     $scope.edit=funtion(x){
     //x is the activity to be deleted
 
-    };
+    };*/
 
 
          $scope.activitySelect=function(x){
