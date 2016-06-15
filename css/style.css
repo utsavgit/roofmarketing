@@ -1,29 +1,30 @@
 body{
-	background-color: #BDBDBD; 
+	background-color:; 
 
 }
 .footer{
 	text-align: center;
-	background-color: #BDBDBD; 
+	background-color: #FFA5A5; 
 
 
 }
 .header{
 	text-align: center;
-	background-color: #BDBDBD; 
+	background-color:  #FFA5A5; 
 
 
 }
 .to_do{
 	height: 540px;
 	width:650px;
-	background-color: #D8D8D8;
+	background-color:#ACE6F6;
+	vertical-align: text-top;
 	
 }
 .form{
 	height: 540px;
 	width:650px;
-	background-color: #E6E6E6;
+	background-color: #E4FCF9;
 	padding:5px;
 }
 .a{

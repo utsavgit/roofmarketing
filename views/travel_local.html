@@ -1,5 +1,5 @@
 <section class="card login">
-    <md-content style="background-color:#E6E6E6">
+    <md-content style="background-color:#E4FCF9">
    
     <md-input-container class="md-icon-float md-block">
       <label> start Latitude</label>
@@ -10,27 +10,53 @@
       <label> start Longitude</label>
       <input type="number" step="0.01" ng-model="data.start_lng">
     </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> start Time</label>
+      <input type="number" step="0.01" ng-model="data.start_time">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> start Location</label>
+      <input type="text"  ng-model="data.start_location">
+    </md-input-container>
         
   
     <md-input-container class="md-icon-float md-block">
       <label> End Latitude</label>
-      <input type="number" step="0.01" ng-model="data.start_lat">
+      <input type="number" step="0.01" ng-model="data.end_lat">
     </md-input-container>
 
     <md-input-container class="md-icon-float md-block">
       <label> End Longitude</label>
-      <input type="number" step="0.01" ng-model="data.start_lng">
+      <input type="number" step="0.01" ng-model="data.end_lng">
     </md-input-container>
 
+     <md-input-container class="md-icon-float md-block">
+      <label> End Time</label>
+      <input type="number" step="0.01" ng-model="data.end_time">
+    </md-input-container>
 
-    <p>Mode: <span class="radioValue">{{ data.group1 }}</span> </p>
+     <md-input-container class="md-icon-float md-block">
+      <label> End Location</label>
+      <input type="text"  ng-model="data.end_location">
+    </md-input-container>
+             
+    <label for="repeatSelect"> Mode: </label>
+    <select name="repeatSelect" id="repeatSelect" ng-model="data.mode" >
+    <option ng-repeat="option in data.availableModes" value="{{option.mode}}">{{option.mode}}</option>
+    </select>
 
-    <md-radio-group ng-model="data.data.group1">
-      <md-radio-button value="Car" class="md-primary">Car</md-radio-button>
-      <md-radio-button value="Bike"> Bike </md-radio-button>
-      <md-radio-button value="Metro">Metro</md-radio-button>
-      <md-radio-button value="Bus">Bus</md-radio-button>
-    </md-radio-group>
+  
+    <md-input-container class="md-icon-float md-block">
+      <label> Project id</label>
+      <input type="text"  ng-model="data.project_id">
+    </md-input-container>
+
+     <md-input-container class="md-icon-float md-block">
+      <label> Purpose</label>
+      <input type="text"  ng-model="data.purpose">
+    </md-input-container>
 
    
    <md-input-container class="md-block">
@@ -38,8 +64,12 @@
           <textarea ng-model="data.comments" md-maxlength="150" rows="5" md-select-on-focus></textarea>
         </md-input-container>
     </br>
-    <md-button class="md-raised md-primary" ng-click="eventplan(data)">Save</md-button>
-    
+    <div layout="row">
+        <div flex="40"></div>
+        <div flex="33">
+        <md-button class="md-raised md-primary "  style="align:center" ng-click="eventplan(data)">Save</md-button>
+        </div>
+         <div flex></div>
     </br>
     </md-content>
 </section>

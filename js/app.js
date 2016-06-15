@@ -6,6 +6,10 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
           templateUrl: 'views/travel_local.html',
           controller: 'RegistrationController'
       });
+      // }). when('/travel_outstation', {
+      //     templateUrl: 'views/travel_outstation.html',
+      //     controller: 'travel_outstationCtrl'
+      // });
       
       // when('/travel_local', {
       //     templateUrl: 'views/travel_local.html',
@@ -41,7 +45,7 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
      }
      ]);
 
-    myApp.controller('to_doCtrl', function($scope,$location) {
+    myApp.controller('to_doCtrl', function($scope,$location,$timeout) {
 
       $scope.myDate = new Date();
       $scope.minDate = new Date(
@@ -83,8 +87,8 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','ngMessages']);
             console.log(x);
             if(x==2)
                 $location.url("travel_local");
-
-
+            else if(x==3)
+                $location.url("travel_outstation");
          };
 }
 );
