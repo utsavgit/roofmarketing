@@ -1,23 +1,7 @@
- myApp.controller('to_doCtrl', function($scope,$location,$timeout, $q) {
+ myApp.controller('to_doCtrl', function($scope,$location,$timeout, $q, $filter, $firebaseArray, $firebaseObject) {
 
-      $scope.userId = 'user-01';
-      $scope.date= '150616';
-      $scope.myDate = new Date();
-      $scope.minDate = new Date(
-          $scope.myDate.getFullYear(),
-          $scope.myDate.getMonth() - 2,
-          $scope.myDate.getDate()
-          );
-      $scope.maxDate = new Date(
-          $scope.myDate.getFullYear(),
-          $scope.myDate.getMonth() + 2,
-          $scope.myDate.getDate()
-          );
-      $scope.onlyWeekendsPredicate = function(date) {
-        var day = date.getDay();
-        return day === 0 || day === 6;
-        }
-        console.log($scope.myDate);
+      $scope.userid = 'user-01';
+      $scope.date = new Date();
 
        $scope.data = {
         repeatSelect: null,
@@ -37,87 +21,40 @@
           {id: '13', name: 'Others'}
         ],
          };
-
-
-
-    //      $scope.todos = [
-    //   {
+     //angularfire method of retrieval
+     function getActivities() {
+         console.log("hello");
+        var dates = $filter('date')($scope.date, 'dd-MM-yy');
+        var ref = firebase.database().ref('/' + $scope.userid + '/' + dates);
        
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-       
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-       
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-       
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-       
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    // ];
-
-    function getUsers() {
-        var defer = $q.defer();
-        firebase.database().ref('/user-01/150616').on('value', function (snapshot) {
-           if(!snapshot.val()){
-              defer.reject('err no data');
-           }else{
-              defer.resolve(snapshot.val());
-              //return snapshot.val();
-           }
-        });
-      return defer.promise;
+        return $firebaseArray(ref);
       };
 
-
-    getUsers().then(function(snap){
-          $scope.todos = snap;
-             console.log($scope.todos);
-      }, function(err){
-           //do something with the error
-           console.log(err);
-    });
-
+    $scope.todos=getActivities();
+    console.log( $scope.todos);
+    
     $scope.delete=function(x){
       console.log("deleting");
+      var dates = $filter('date')($scope.date, 'dd-MM-yy');
       var updates = {};
-        updates['/' + $scope.userId + '/' + $scope.date + '/' + x] = null;
+        updates['/' + $scope.userid + '/' + dates + '/' + x] = null;
         return firebase.database().ref().update(updates);
      };
 
     $scope.edit=function(x){
-      $location.path('/travel_local').search({param:x});
+      var dates = $filter('date')($scope.date, 'dd-MM-yy');
+      $location.url("travel_local").search({date:dates, userid:$scope.userid,activityid:x});
     };
 
 
          $scope.activitySelect=function(x){
             console.log(x);
+            var dates = $filter('date')($scope.date, 'dd-MM-yy');
+            console.log(dates);
             if(x==1)
                 $location.url("appointment"); 
             if(x==2)
-                $location.url("travel_local");
+                $location.url("travel_local").search({date:dates, userid:$scope.userid});
             else if(x==3)
                 $location.url("travel_outstation");
             else if(x==4)

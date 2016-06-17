@@ -1,19 +1,7 @@
 myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
   
    $scope.dats = {
-      // group1 : 'Car',
-      // start_lat: null,
-      // start_lng:null,
-      // start_time:null,
-      // start_location:null,
-      // end_lat: null,
-      // end_lng:null,
-      // end_time:null,
-      // end_location:null,
-      // purpose:null,
-      // project_id:null,
-      // mode:null,
-      // active:null,
+     
       availableModes:[
       	{mode:"car"},
       	{mode:"bike"},
@@ -22,14 +10,14 @@ myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
       ]
     };
     $scope.repeatSelect;
+    
+    if($routeParams.activityid) {
 
-    if($routeParams.param) {
+      console.log($routeParams);
 
-      console.log($routeParams.param);
-
-        function getUsers() {
+        function getActivities() {
           var defer = $q.defer();
-          firebase.database().ref('/user-01/150616/' + $routeParams.param).on('value', function (snapshot) {
+          firebase.database().ref('/activity/'+$routeParams.userid+'/'+$routeParams.date+'/' + $routeParams.activityid).on('value', function (snapshot) {
              if(!snapshot.val()){
                 defer.reject('err no data');
              }else{
@@ -41,7 +29,7 @@ myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
         };
 
 
-        getUsers().then(function(snap){
+        getActivities().then(function(snap){
               $scope.data = snap;
                  console.log($scope.data);
           }, function(err){
@@ -54,22 +42,17 @@ myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
 
   $scope.eventplan = function(data) {
     console.log(data);
-    var userId = $scope.userid;
-    var date = '150616';
-    /*firebase.database().ref(userId+'/').set({
-
-    })*/
-    if(!$routeParams.param) {
-        var newPostKey = firebase.database().ref(userId + '/').child(date).push().key;
+    console.log($routeParams.date);
+   
+    if(!$routeParams.activityid) {
+        var newPostKey = firebase.database().ref('/activity/'+$routeParams.userid + '/').child($routeParams.date).push().key;
       }
-      else var newPostKey = $routeParams.param;
+      else var newPostKey = $routeParams.activityid;
       
         var updates = {};
-        updates['/' + userId + '/' + date + '/' + newPostKey + '/type'] = "localTravel";
-        updates['/' + userId + '/' + date + '/' + newPostKey + '/planning'] = data.planning;
-        //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/start'] = data.plan.start;
-        //updates['/' + userId + '/' + date + '/' + newPostKey + '/planning/end'] = data.plan.end;
-
+        updates['/activity/' + $routeParams.userid  + '/' + $routeParams.date + '/' + newPostKey + '/type'] = "localTravel";
+        updates['/activity/' + $routeParams.userid  + '/' + $routeParams.date + '/' + newPostKey + '/planning'] = data.planning;
+        
         return firebase.database().ref().update(updates);
     
   };
