@@ -1,4 +1,4 @@
-myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
+myApp.controller('travel_outstationCtrl', function($scope, $routeParams, $q) {
   
    $scope.dats = {
      
@@ -42,6 +42,7 @@ myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
 
   $scope.eventplan = function(data) {
     console.log(data);
+    console.log("outstationTravel");
     console.log($routeParams.date);
     //var userId = $scope.userid;
     //var date = '150616';

@@ -9,6 +9,9 @@ myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
       	{mode:"bus"}
       ]
     };
+    console.log( $routeParams.date);
+    console.log( $routeParams.userid);
+
     $scope.repeatSelect;
     
     if($routeParams.activityid) {
@@ -45,7 +48,7 @@ myApp.controller('travel_localCtrl', function($scope, $routeParams, $q) {
     console.log($routeParams.date);
    
     if(!$routeParams.activityid) {
-        var newPostKey = firebase.database().ref('/activity/'+$routeParams.userid + '/').child($routeParams.date).push().key;
+        var newPostKey = firebase.database().ref('/activity/'+$routeParams.userid).child($routeParams.date).push().key;
       }
       else var newPostKey = $routeParams.activityid;
       

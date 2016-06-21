@@ -47,6 +47,8 @@
                 <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect" ng-change="activitySelect(data.repeatSelect)">
 					<option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
 				</select>
+
+                <input type="button" ng-click="getActivities()" value="show">
                 
                 </br>
                 
@@ -57,14 +59,14 @@
                     </br>
                     <md-list-item class="md-3-line" ng-repeat="data in todos" >
 	
-	<div class="md-list-item-text" layout="column">
-		<h3>{{ data.type }}</h3>
-		<h4>{{ data.planning.start.time }} - {{data.planning.end.time}} </h4>
-	</div>
-	<md-button class="md-raised" ng-click="edit(data.$id)">EDIT</md-button> 
-	<md-button class="md-warn md-raised" ng-click="delete(data.$id)">DELETE</md-button> 
-</br>
-</md-list-item>
+                    	<div class="md-list-item-text" layout="column">
+                    		<h3>{{ data.type }}</h3>
+                    		<h4>{{ data.planning.start.time }} - {{data.planning.end.time}} </h4>
+                    	</div>
+                    	<md-button class="md-raised" ng-click="edit(data.$id)">EDIT</md-button> 
+                    	<md-button class="md-warn md-raised" ng-click="delete(data.$id)">DELETE</md-button> 
+                    </br>
+                    </md-list-item>
                     <md-subheader></md-subheader>
                     <md-divider></md-divider>
                 </md-list>
@@ -82,14 +84,13 @@
     </table>
    <!--  firebase -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-  // Initialize Firebase
-  <script>
+<script>
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDPSo7fYz206TOboKW10_mtogE_nszWDbQ",
-    authDomain: "marketing-3f7dd.firebaseapp.com",
-    databaseURL: "https://marketing-3f7dd.firebaseio.com",
-    storageBucket: "marketing-3f7dd.appspot.com",
+    apiKey: "AIzaSyCKaEjpBt-dv65ktLuLmEj8NwdAAkD9Ba4",
+    authDomain: "project-313476129231192088.firebaseapp.com",
+    databaseURL: "https://project-313476129231192088.firebaseio.com",
+    storageBucket: "project-313476129231192088.appspot.com",
   };
   firebase.initializeApp(config);
 </script>

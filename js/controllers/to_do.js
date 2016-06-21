@@ -1,6 +1,6 @@
  myApp.controller('to_doCtrl', function($scope,$location,$timeout, $q, $filter, $firebaseArray, $firebaseObject) {
 
-      $scope.userid = 'user-01';
+      $scope.userid;
       $scope.date = new Date();
 
        $scope.data = {
@@ -22,22 +22,23 @@
         ],
          };
      //angularfire method of retrieval
-     function getActivities() {
-         console.log("hello");
+     $scope.getActivities = function() {
+        console.log("hello");
         var dates = $filter('date')($scope.date, 'dd-MM-yy');
-        var ref = firebase.database().ref('/' + $scope.userid + '/' + dates);
-       
-        return $firebaseArray(ref);
+        console.log(dates);
+        console.log($scope.userid);
+        var ref = firebase.database().ref('/activity/' + $scope.userid + '/' + dates);
+        $scope.todos = $firebaseArray(ref);
       };
 
-    $scope.todos=getActivities();
+    // $scope.todos=getActivities();
     console.log( $scope.todos);
     
     $scope.delete=function(x){
       console.log("deleting");
       var dates = $filter('date')($scope.date, 'dd-MM-yy');
       var updates = {};
-        updates['/' + $scope.userid + '/' + dates + '/' + x] = null;
+        updates['/activity/' + $scope.userid + '/' + dates + '/' + x] = null;
         return firebase.database().ref().update(updates);
      };
 
